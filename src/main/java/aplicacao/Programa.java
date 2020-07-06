@@ -31,6 +31,12 @@ public class Programa {
 		Pessoa p = em.find(Pessoa.class, 2);//Realiza busca no banco na tabela da referida classe, usando como chave o ID
 		
 		System.out.println(p);
+		/*Para remover um registro de uma tabela, primeiro é necessário realizar a busca pelo elemento no banco 
+		 * afim de preparar o registro para sobre alterações.
+		 * Não sendo esta uma consulta é necessário os blocos de comando getTransation.begin e getTransation.commit*/
+		em.getTransaction().begin();
+		em.remove(p);
+		em.getTransaction().commit();
 		
 		em.close();
 		emf.close();
